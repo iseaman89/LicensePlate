@@ -1,4 +1,11 @@
+using System.Text;
+using LicensePlateServer.Configurations;
+using LicensePlateServer.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,11 +14,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 var connString = builder.Configuration.GetConnectionString("LicensePlateDbConnection");
-builder.Services.AddDbContext<BookStoreDbContext>(options => options.UseNpgsql(connString));
+builder.Services.AddDbContext<LicensePlateDbContext>(options => options.UseNpgsql(connString));
 
 builder.Services.AddIdentityCore<ApiUser>()
     .AddRoles<IdentityRole>()
-    .AddEntityFrameworkStores<BookStoreDbContext>();
+    .AddEntityFrameworkStores<LicensePlateDbContext>();
 
 builder.Services.AddAutoMapper(typeof(MapperConfig));
 
