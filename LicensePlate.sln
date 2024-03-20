@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicensePlateServer", "LicensePlateServer\LicensePlateServer.csproj", "{888D9165-61FC-470D-B749-5D0B0E45BFB2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicensePlateClient", "LicensePlateClient\LicensePlateClient.csproj", "{924A5224-D603-4A9B-8A2D-108A11AD8BE9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicensePlateDataShared", "LicensePlateDataShared\LicensePlateDataShared.csproj", "{012FE61E-CC8A-4804-B1D0-E73B15923460}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{888D9165-61FC-470D-B749-5D0B0E45BFB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{888D9165-61FC-470D-B749-5D0B0E45BFB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{888D9165-61FC-470D-B749-5D0B0E45BFB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{888D9165-61FC-470D-B749-5D0B0E45BFB2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{924A5224-D603-4A9B-8A2D-108A11AD8BE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{924A5224-D603-4A9B-8A2D-108A11AD8BE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{924A5224-D603-4A9B-8A2D-108A11AD8BE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{924A5224-D603-4A9B-8A2D-108A11AD8BE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{012FE61E-CC8A-4804-B1D0-E73B15923460}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{012FE61E-CC8A-4804-B1D0-E73B15923460}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{012FE61E-CC8A-4804-B1D0-E73B15923460}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{012FE61E-CC8A-4804-B1D0-E73B15923460}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
