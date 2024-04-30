@@ -10,6 +10,7 @@ using LicensePlateDataShared.Models;
 using LicensePlateDataShared.Static;
 using LicensePlateServer.Data;
 using LicensePlateServer.Models.Cameras;
+using LicensePlateServer.Repositories;
 using Microsoft.AspNetCore.Authorization;
 
 namespace LicensePlateServer.Controllers
@@ -19,13 +20,13 @@ namespace LicensePlateServer.Controllers
     [Authorize]
     public class CameraController : ControllerBase
     {
-        private readonly LicensePlateDbContext _context;
+        private readonly ICameraRepository _cameraRepository;
         private readonly IMapper _mapper;
         private readonly ILogger<CameraController> _logger;
 
-        public CameraController(LicensePlateDbContext context, IMapper mapper, ILogger<CameraController> logger)
+        public CameraController(ICameraRepository cameraRepository, IMapper mapper, ILogger<CameraController> logger)
         {
-            _context = context;
+            _cameraRepository = cameraRepository;
             _mapper = mapper;
             _logger = logger;
         }
@@ -36,7 +37,7 @@ namespace LicensePlateServer.Controllers
         {
             try
             {
-                var cameras = await _context.Cameras.ToListAsync();
+                var cameras = await _cameraRepository.GetAllAsync();
                 var cameraDtos = _mapper.Map<IEnumerable<CameraReadOnlyDto>>(cameras);
                 return Ok(cameraDtos);
             }
@@ -53,7 +54,7 @@ namespace LicensePlateServer.Controllers
         {
             try
             {
-                var camera = await _context.Cameras.FindAsync(id);
+                var camera = await _cameraRepository.GetAsync(id);
 
                 if (camera == null)
                 {
@@ -83,7 +84,7 @@ namespace LicensePlateServer.Controllers
                 return BadRequest();
             }
 
-            var camera = await _context.Cameras.FindAsync(id);
+            var camera = await _cameraRepository.GetAsync(id);
 
             if (camera == null)
             {
@@ -92,11 +93,10 @@ namespace LicensePlateServer.Controllers
             }
 
             _mapper.Map(cameraDto, camera);
-            _context.Entry(camera).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _cameraRepository.UpdateAsync(camera);
             }
             catch (DbUpdateConcurrencyException ex)
             {
@@ -123,8 +123,7 @@ namespace LicensePlateServer.Controllers
             try
             {
                 var camera = _mapper.Map<Camera>(cameraDto);
-                await _context.Cameras.AddAsync(camera);
-                await _context.SaveChangesAsync();
+                await _cameraRepository.AddAsync(camera);
 
                 return CreatedAtAction(nameof(GetCamera), new { id = camera.Id }, camera);
             }
@@ -143,15 +142,14 @@ namespace LicensePlateServer.Controllers
         {
             try
             {
-                var camera = await _context.Cameras.FindAsync(id);
+                var camera = await _cameraRepository.GetAsync(id);
                 if (camera == null)
                 {
                     _logger.LogWarning($"{nameof(Camera)} record not found in {nameof(DeleteCamera)} - ID: {id}");
                     return NotFound();
                 }
 
-                _context.Cameras.Remove(camera);
-                await _context.SaveChangesAsync();
+                await _cameraRepository.DeleteAsync(id);
 
                 return NoContent();
             }
@@ -164,7 +162,7 @@ namespace LicensePlateServer.Controllers
 
         private async Task<bool> CameraExists(int id)
         {
-            return await _context.Cameras.AnyAsync(c => c.Id == id);
+            return await _cameraRepository.Exists(id);
         }
     }
 }

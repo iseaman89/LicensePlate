@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <EnablePreviewFeatures>true</EnablePreviewFeatures>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
+    <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
+    <ItemGroup>
+      <PackageReference Include="AutoMapper.Collection.EntityFrameworkCore" Version="10.0.0" />
+      <PackageReference Include="Blazored.LocalStorage" Version="4.5.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="7.0.17" />
+      <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.5.0" />
+      <PackageReference Include="MudBlazor" Version="6.19.1" />
+      <PackageReference Include="CodeBeam.MudBlazor.Extensions" Version="6.9.2" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Data\" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\LicensePlateDataShared\LicensePlateDataShared.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Pages\LicensePlates\Update.cs">
+        <DependentUpon>Update.razor</DependentUpon>
+      </Compile>
+      <Compile Update="Pages\Users\Login.cs">
+        <DependentUpon>Login.razor</DependentUpon>
+      </Compile>
+      <Compile Update="Pages\Users\Logout.cs">
+        <DependentUpon>Logout.razor</DependentUpon>
+      </Compile>
+      <Compile Update="Pages\Users\Register.cs">
+        <DependentUpon>Register.razor</DependentUpon>
+      </Compile>
+      <Compile Update="Pages\Cameras\Update.cs">
+        <DependentUpon>Update.razor</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+</Project>

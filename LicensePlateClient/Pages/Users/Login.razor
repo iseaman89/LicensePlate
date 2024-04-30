@@ -1,0 +1,54 @@
+@page "/users/login"
+@inject IAuthenticationService _authService
+@inject NavigationManager _navManager
+
+<h3>Login</h3>
+
+@if (!string.IsNullOrEmpty(_message))
+{
+<div class="alert alert-danger">
+    <p>@_message</p>
+</div>
+}
+<div class="card-body">
+    <EditForm Model="_loginModel" OnValidSubmit="HandleLogin">
+        <DataAnnotationsValidator/>
+        <ValidationSummary/>
+        <div class="form-group">
+            <label>User name</label>
+            <InputText class="form-control" @bind-Value="_loginModel.UserName"></InputText>
+            <ValidationMessage For="@(() => _loginModel.UserName)"></ValidationMessage>
+        </div>
+        <div class="form-group">
+            <label>Password</label>
+            <InputText class="form-control" type="password" @bind-Value="_loginModel.Password"></InputText>
+            <ValidationMessage For="@(() => _loginModel.Password)"></ValidationMessage>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Login</button>
+    </EditForm>
+</div>
+
+@code {
+private LoginUserDto _loginModel = new LoginUserDto();
+private string _message = String.Empty;
+
+private async Task HandleLogin()
+{
+    try
+    {
+        var response = await _authService.AuthenticateAsync(_loginModel);
+        if (response)
+        {
+            _navManager.NavigateTo("/");
+        }
+    }
+    catch (ApiException ex)
+    {
+        if (ex.StatusCode >= 200 && ex.StatusCode <= 299)
+        {
+            _navManager.NavigateTo("/");
+        }
+         _message = ex.Response;
+   }
+}
+}

@@ -1,0 +1,43 @@
+﻿<Properties StartupConfiguration="{09BEE3B7-FC7B-4A9A-ABF7-CDE4C7E9CE86}|http">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="LicensePlateClient/Pages/Index.razor">
+    <Files>
+      <File FileName="LicensePlateClient/Pages/Index.razor" Line="19" Column="13" />
+      <File FileName="LicensePlateClient/_Imports.razor" Line="16" Column="17" />
+      <File FileName="LicensePlateClient/Shared/MainLayout.razor" Line="1" Column="1" />
+      <File FileName="LicensePlateClient/Shared/NavMenu.razor" Line="1" Column="1" />
+      <File FileName="LicensePlateClient/App.razor" Line="24" Column="18" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="LicensePlate" expanded="True">
+            <Node name="LicensePlateClient">
+              <Node name="Dependencies" expanded="True" />
+              <Node name="Pages" expanded="True">
+                <Node name="Index.razor" selected="True" />
+              </Node>
+              <Node name="Shared" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.LicensePlateServer PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MultiItemStartupConfigurations>
+    <MultiItemSolutionRunConfiguration Id="Multiple Projects" Name="Multiple Projects">
+      <Items>
+        <StartupItem ItemId="{09BEE3B7-FC7B-4A9A-ABF7-CDE4C7E9CE86}" ItemName="LicensePlateClient" ConfigurationId="https" />
+        <StartupItem ItemId="{DDA91EEC-968D-4974-8F52-ADA8F8FC397C}" ItemName="LicensePlateServer" ConfigurationId="https" />
+        <StartupItem ItemId="{24A725C5-8CEC-4F4D-9D68-DE2F4181C391}" ItemName="LicensePlateServer.UI" ConfigurationId="https" />
+      </Items>
+    </MultiItemSolutionRunConfiguration>
+  </MultiItemStartupConfigurations>
+  <MonoDevelop.Ide.ItemProperties.LicensePlateClient PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.LicensePlateServer.UI PreferredExecutionTarget="/Applications/Google Chrome.app" />
+</Properties>

@@ -1,0 +1,36 @@
+2024-03-30 10:09:45.261 +01:00 [INF] Now listening on: https://localhost:7271
+2024-03-30 10:09:45.280 +01:00 [INF] Now listening on: http://localhost:5118
+2024-03-30 10:09:45.281 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-03-30 10:09:45.281 +01:00 [INF] Hosting environment: Development
+2024-03-30 10:09:45.281 +01:00 [INF] Content root path: /Users/iseaman/RiderProjects/LicensePlate/LicensePlateServer
+2024-03-30 10:09:53.376 +01:00 [INF] Login Attempt for iseaman 
+2024-03-30 10:10:13.849 +01:00 [INF] Login Attempt for iseaman 
+2024-03-30 11:06:09.438 +01:00 [INF] Application is shutting down...
+2024-03-30 11:17:07.327 +01:00 [INF] Now listening on: https://localhost:7271
+2024-03-30 11:17:07.350 +01:00 [INF] Now listening on: http://localhost:5118
+2024-03-30 11:17:07.350 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-03-30 11:17:07.350 +01:00 [INF] Hosting environment: Development
+2024-03-30 11:17:07.350 +01:00 [INF] Content root path: /Users/iseaman/RiderProjects/LicensePlate/LicensePlateServer
+2024-03-30 11:17:20.750 +01:00 [INF] Login Attempt for iseaman 
+2024-03-30 11:19:24.724 +01:00 [INF] Application is shutting down...
+2024-03-30 11:19:30.009 +01:00 [INF] Now listening on: https://localhost:7271
+2024-03-30 11:19:30.029 +01:00 [INF] Now listening on: http://localhost:5118
+2024-03-30 11:19:30.030 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-03-30 11:19:30.030 +01:00 [INF] Hosting environment: Development
+2024-03-30 11:19:30.030 +01:00 [INF] Content root path: /Users/iseaman/RiderProjects/LicensePlate/LicensePlateServer
+2024-03-30 11:19:37.272 +01:00 [INF] Login Attempt for iseaman 
+2024-03-30 11:20:25.494 +01:00 [INF] Login Attempt for iseaman 
+2024-03-30 11:20:35.388 +01:00 [INF] Application is shutting down...
+2024-03-30 11:20:49.933 +01:00 [INF] Now listening on: https://localhost:7271
+2024-03-30 11:20:49.955 +01:00 [INF] Now listening on: http://localhost:5118
+2024-03-30 11:20:49.956 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-03-30 11:20:49.956 +01:00 [INF] Hosting environment: Development
+2024-03-30 11:20:49.956 +01:00 [INF] Content root path: /Users/iseaman/RiderProjects/LicensePlate/LicensePlateServer
+2024-03-30 11:21:08.520 +01:00 [INF] Login Attempt for iseaman 
+2024-03-30 11:27:48.140 +01:00 [INF] Now listening on: https://localhost:7271
+2024-03-30 11:27:48.159 +01:00 [INF] Now listening on: http://localhost:5118
+2024-03-30 11:27:48.160 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-03-30 11:27:48.160 +01:00 [INF] Hosting environment: Development
+2024-03-30 11:27:48.160 +01:00 [INF] Content root path: /Users/iseaman/RiderProjects/LicensePlate/LicensePlateServer
+2024-03-30 11:28:07.595 +01:00 [INF] Login Attempt for administrator 
+2024-03-30 14:12:23.031 +01:00 [INF] Application is shutting down...

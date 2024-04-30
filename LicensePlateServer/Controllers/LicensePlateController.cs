@@ -7,6 +7,7 @@ using LicensePlateDataShared.Models;
 using LicensePlateDataShared.Static;
 using LicensePlateServer.Data;
 using LicensePlateServer.Models.LicensePlates;
+using LicensePlateServer.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,13 +20,13 @@ namespace LicensePlateServer.Controllers
     [Authorize]
     public class LicensePlateController : ControllerBase
     {
-        private readonly LicensePlateDbContext _context;
+        private readonly ILicensePlateRepository _licensePlateRepository;
         private readonly IMapper _mapper;
         private readonly ILogger<LicensePlateController> _logger;
 
-        public LicensePlateController(LicensePlateDbContext context, IMapper mapper, ILogger<LicensePlateController> logger)
+        public LicensePlateController(ILicensePlateRepository licensePlateRepository, IMapper mapper, ILogger<LicensePlateController> logger)
         {
-            _context = context;
+            _licensePlateRepository = licensePlateRepository;
             _mapper = mapper;
             _logger = logger;
         }
@@ -36,7 +37,7 @@ namespace LicensePlateServer.Controllers
         {
             try
             {
-                var licensePlates = await _context.LicensePlates.ToListAsync();
+                var licensePlates = await _licensePlateRepository.GetAllAsync();
                 var licensePlateDtos = _mapper.Map<IEnumerable<LicensePlateReadOnlyDto>>(licensePlates);
                 return Ok(licensePlateDtos);
             }
@@ -53,7 +54,7 @@ namespace LicensePlateServer.Controllers
         {
             try
             {
-                var licensePlate = await _context.LicensePlates.FindAsync(id);
+                var licensePlate = await _licensePlateRepository.GetAsync(id);
 
                 if (licensePlate == null)
                 {
@@ -83,7 +84,7 @@ namespace LicensePlateServer.Controllers
                 return BadRequest();
             }
 
-            var licensePlate = await _context.LicensePlates.FindAsync(id);
+            var licensePlate = await _licensePlateRepository.GetAsync(id);
 
             if (licensePlate == null)
             {
@@ -92,11 +93,10 @@ namespace LicensePlateServer.Controllers
             }
 
             _mapper.Map(licensePlateDto, licensePlate);
-            _context.Entry(licensePlate).State = EntityState.Modified;
-
+            
             try
             {
-                await _context.SaveChangesAsync();
+                await _licensePlateRepository.UpdateAsync(licensePlate);
             }
             catch (DbUpdateConcurrencyException ex)
             {
@@ -123,8 +123,7 @@ namespace LicensePlateServer.Controllers
             try
             {
                 var licensePlate = _mapper.Map<LicensePlate>(licensePlateDto);
-                await _context.LicensePlates.AddAsync(licensePlate);
-                await _context.SaveChangesAsync();
+                await _licensePlateRepository.AddAsync(licensePlate);
 
                 return CreatedAtAction(nameof(GetLicensePlate), new { id = licensePlate.Id }, licensePlate);
             }
@@ -143,15 +142,14 @@ namespace LicensePlateServer.Controllers
         {
             try
             {
-                var licensePlate = await _context.LicensePlates.FindAsync(id);
+                var licensePlate = await _licensePlateRepository.GetAsync(id);
                 if (licensePlate == null)
                 {
                     _logger.LogWarning($"{nameof(LicensePlate)} record not found in {nameof(DeleteLicensePlate)} - ID: {id}");
                     return NotFound();
                 }
 
-                _context.LicensePlates.Remove(licensePlate);
-                await _context.SaveChangesAsync();
+                await _licensePlateRepository.DeleteAsync(id);
 
                 return NoContent();
             }
@@ -164,7 +162,7 @@ namespace LicensePlateServer.Controllers
 
         private async Task<bool> LicensePlateExists(int id)
         {
-            return await _context.LicensePlates.AnyAsync(e => e.Id == id);
+            return await _licensePlateRepository.Exists(id);
         }
     }
 }

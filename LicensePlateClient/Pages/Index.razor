@@ -2,8 +2,16 @@
 
 <PageTitle>Index</PageTitle>
 
-<h1>Hello, world!</h1>
+<Animate Animation="new SlideUpAnimation()" DelayMilliseconds="1000" Duration="TimeSpan.FromSeconds(5000)">
+    <MudImage
+        ObjectPosition="ObjectPosition.Center"
+        Height="150"
+        Width="300"
+        Src="img/spie-logo.jpg"
+        Elevation="25"
+        Class="rounded-lg"
+        Style="display: block; margin: auto;"
+    />
+</Animate>
 
-Welcome to your new app.
 
-<SurveyPrompt Title="How is Blazor working for you?" />

@@ -1,6 +1,7 @@
 using System.Text;
 using LicensePlateServer.Configurations;
 using LicensePlateServer.Data;
+using LicensePlateServer.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,9 @@ builder.Services.AddDbContext<LicensePlateDbContext>(options => options.UseNpgsq
 builder.Services.AddIdentityCore<ApiUser>()
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<LicensePlateDbContext>();
+
+builder.Services.AddScoped<ILicensePlateRepository, LicensePlateRepository>();
+builder.Services.AddScoped<ICameraRepository, CameraRepository>();
 
 builder.Services.AddAutoMapper(typeof(MapperConfig));
 

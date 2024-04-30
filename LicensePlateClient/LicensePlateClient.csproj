@@ -6,10 +6,56 @@
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' ">
+      <ExternalConsole>true</ExternalConsole>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' ">
+      <ExternalConsole>true</ExternalConsole>
+    </PropertyGroup>
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.17"/>
-        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.17" PrivateAssets="all"/>
+        <PackageReference Include="AutoMapper" Version="13.0.1" />
+        <PackageReference Include="Blazored.LocalStorage" Version="4.5.0" />
+        <PackageReference Include="Blazorise.Animate" Version="1.5.2" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="7.0.17" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="7.0.17" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="7.0.17" PrivateAssets="all" />
         <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.5.0" />
+        <PackageReference Include="MudBlazor" Version="6.19.1" />
+        <PackageReference Include="CodeBeam.MudBlazor.Extensions" Version="6.9.2" />
     </ItemGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\LicensePlateDataShared\LicensePlateDataShared.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Pages\LicensePlates\Create.razor" />
+      <AdditionalFiles Include="Pages\LicensePlates\Index.razor" />
+      <AdditionalFiles Include="Pages\LicensePlates\Update.razor" />
+      <AdditionalFiles Include="Pages\Users\Login.razor" />
+      <AdditionalFiles Include="Pages\Users\Logout.razor" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Pages\LicensePlates\Create.cs">
+        <DependentUpon>Create.razor</DependentUpon>
+      </Compile>
+      <Compile Update="Pages\LicensePlates\Index.cs">
+        <DependentUpon>Index.razor</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="wwwroot\img\spie-logo---weißer-hintergrund.jpg" />
+      <Content Remove="wwwroot\img\spie-logo.jpg" />
+      <Content Remove="wwwroot\img\" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Include="wwwroot\img\spie-logo---weißer-hintergrund.jpg" />
+      <None Include="wwwroot\img\spie-logo.jpg" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="wwwroot\img\" />
+    </ItemGroup>
 </Project>

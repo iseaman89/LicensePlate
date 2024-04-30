@@ -1,0 +1,82 @@
+@page "/license-plates/"
+@inject ILicensePlateService _licensePlateService
+@inject IJSRuntime _js
+
+<h3>Index</h3>
+
+@if (_response.Success == false)
+{
+<div class="alert alert-danger">
+    <h4>@_response.Message</h4>
+</div>
+}
+@if (_licensePlates == null)
+{
+    <div class="alert alert-info">
+        <h4>Loading data...</h4>
+    </div>
+}
+else
+{
+    <AuthorizeView Roles=@Roles.Administartor>
+        <a class="btn btn-dark" href="/license-plates/create"><span class="oi oi-plus" aria-hidden="true"></span>Create</a>
+    </AuthorizeView>
+    <br/>
+    <table class="table table-responsive">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Plate Number</th>
+            <th>Image</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var licensePlate in _licensePlates)
+        {
+            <tr>
+                <td>@licensePlate.Date</td>
+                <td>@licensePlate.Time</td>
+                <td>@licensePlate.PlateNumber</td>
+                <td>@licensePlate.Image</td>
+                <td>
+                    <AuthorizeView Roles=@Roles.Administartor>
+                        <a class="btn btn-warning" href="/license-plates/update/@licensePlate.Id"><span class="oi oi-pencil" aria-hidden="true"></span>Edit</a>
+                        <button class="btn btn-danger" @onclick="() => Delete(licensePlate.Id)"><span class="oi oi-delete" aria-hidden="true"></span>Delete</button>
+                    </AuthorizeView>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<LicensePlateReadOnlyDto> _licensePlates;
+    private Response<List<LicensePlateReadOnlyDto>> _response = new Response<List<LicensePlateReadOnlyDto>>(){Success = true};
+
+    protected override async Task OnInitializedAsync()
+    {
+        _response = await _licensePlateService.GetLicensePlates();
+
+        if (_response.Success)
+        {
+            _licensePlates = _response.Data;
+        }
+    }
+
+    private async Task Delete(int id)
+    {
+        var licensePlate = _licensePlates.Find(lp => lp.Id == id);
+        var confirm = await _js.InvokeAsync<bool>("confirm", $"Are you sure that you want delete license plate {licensePlate.PlateNumber}?");
+        if (confirm)
+        {
+            var response = await _licensePlateService.Delete(id);
+            if (response.Success)
+            {
+                await OnInitializedAsync();
+            }
+        }
+    }
+
+}

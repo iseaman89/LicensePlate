@@ -1,0 +1,31 @@
+2024-03-28 20:22:42.034 +01:00 [INF] Now listening on: https://localhost:7271
+2024-03-28 20:22:42.052 +01:00 [INF] Now listening on: http://localhost:5118
+2024-03-28 20:22:42.053 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-03-28 20:22:42.053 +01:00 [INF] Hosting environment: Development
+2024-03-28 20:22:42.053 +01:00 [INF] Content root path: /Users/iseaman/RiderProjects/LicensePlate/LicensePlateServer
+2024-03-28 20:23:17.437 +01:00 [INF] Application is shutting down...
+2024-03-28 20:24:14.165 +01:00 [INF] Now listening on: https://localhost:7271
+2024-03-28 20:24:14.184 +01:00 [INF] Now listening on: http://localhost:5118
+2024-03-28 20:24:14.185 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-03-28 20:24:14.185 +01:00 [INF] Hosting environment: Development
+2024-03-28 20:24:14.185 +01:00 [INF] Content root path: /Users/iseaman/RiderProjects/LicensePlate/LicensePlateServer
+2024-03-28 20:25:00.209 +01:00 [INF] Application is shutting down...
+2024-03-28 20:25:38.369 +01:00 [INF] Now listening on: https://localhost:7271
+2024-03-28 20:25:38.388 +01:00 [INF] Now listening on: http://localhost:5118
+2024-03-28 20:25:38.389 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-03-28 20:25:38.389 +01:00 [INF] Hosting environment: Development
+2024-03-28 20:25:38.389 +01:00 [INF] Content root path: /Users/iseaman/RiderProjects/LicensePlate/LicensePlateServer
+2024-03-28 20:25:38.931 +01:00 [INF] Application is shutting down...
+2024-03-28 20:25:49.893 +01:00 [INF] Now listening on: https://localhost:7271
+2024-03-28 20:25:49.914 +01:00 [INF] Now listening on: http://localhost:5118
+2024-03-28 20:25:49.914 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-03-28 20:25:49.915 +01:00 [INF] Hosting environment: Development
+2024-03-28 20:25:49.915 +01:00 [INF] Content root path: /Users/iseaman/RiderProjects/LicensePlate/LicensePlateServer
+2024-03-28 20:26:19.223 +01:00 [INF] Application is shutting down...
+2024-03-28 20:26:34.001 +01:00 [INF] Now listening on: https://localhost:7271
+2024-03-28 20:26:34.022 +01:00 [INF] Now listening on: http://localhost:5118
+2024-03-28 20:26:34.022 +01:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-03-28 20:26:34.022 +01:00 [INF] Hosting environment: Development
+2024-03-28 20:26:34.022 +01:00 [INF] Content root path: /Users/iseaman/RiderProjects/LicensePlate/LicensePlateServer
+2024-03-28 20:27:03.196 +01:00 [INF] Registration Attempt for userfds 
+2024-03-28 20:27:53.247 +01:00 [INF] Application is shutting down...

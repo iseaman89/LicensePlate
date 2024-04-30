@@ -72,7 +72,7 @@ namespace LicensePlateServer.Controllers
             _logger.LogInformation($"Login Attempt for {userDto.UserName} ");
             try
             {
-                var user = await _userManager.FindByEmailAsync(userDto.UserName);
+                var user = await _userManager.FindByNameAsync(userDto.UserName);
                 var passwordValid = await _userManager.CheckPasswordAsync(user, userDto.Password);
 
                 if (user == null || passwordValid == false)
@@ -93,8 +93,8 @@ namespace LicensePlateServer.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, $"Something Went Wrong in the {nameof(Register)}");
-                return Problem($"Something Went Wrong in the {nameof(Register)}", statusCode: 500);
+                _logger.LogError(ex, $"Something Went Wrong in the {nameof(Login)}");
+                return Problem($"Something Went Wrong in the {nameof(Login)}", statusCode: 500);
             }
         }
 
