@@ -1,8 +1,8 @@
 @page "/users/login"
+@using MudExtensions.Enums
 @inject IAuthenticationService _authService
 @inject NavigationManager _navManager
 
-<h3>Login</h3>
 
 @if (!string.IsNullOrEmpty(_message))
 {
@@ -10,23 +10,40 @@
     <p>@_message</p>
 </div>
 }
-<div class="card-body">
-    <EditForm Model="_loginModel" OnValidSubmit="HandleLogin">
-        <DataAnnotationsValidator/>
-        <ValidationSummary/>
-        <div class="form-group">
-            <label>User name</label>
-            <InputText class="form-control" @bind-Value="_loginModel.UserName"></InputText>
-            <ValidationMessage For="@(() => _loginModel.UserName)"></ValidationMessage>
-        </div>
-        <div class="form-group">
-            <label>Password</label>
-            <InputText class="form-control" type="password" @bind-Value="_loginModel.Password"></InputText>
-            <ValidationMessage For="@(() => _loginModel.Password)"></ValidationMessage>
-        </div>
-        <button type="submit" class="btn btn-primary btn-block">Login</button>
-    </EditForm>
-</div>
+<Animate Animation="new SlideUpAnimation()" DelayMilliseconds="1000" DurationMilliseconds="3000">
+    <MudContainer Class="margin-top: 10px">
+        <MudImage
+            ObjectPosition="ObjectPosition.Center"
+            Height="150"
+            Width="300"
+            Src="img/spie-logo.jpg"
+            Class="rounded-lg"
+            Style="display: block; margin: auto;"
+        />
+    </MudContainer>
+</Animate>
+<Animate Animation="new ZoomInAnimation()" DelayMilliseconds="1200" DurationMilliseconds="3000">
+    <div style="display: flex; justify-content: center; align-items: center">
+        <MudPaper Style="width: 300px;">
+            <EditForm Model="_loginModel" OnValidSubmit="HandleLogin">
+                <DataAnnotationsValidator/>
+                <ValidationSummary/>
+                <div class="form-group">
+                    <MudTextField Class="form-control" T="string" Label="Username" @bind-Value="_loginModel.UserName" FullWidth="true"/>
+                    <ValidationMessage For="@(() => _loginModel.UserName)"></ValidationMessage>
+                </div>
+                <div style="height: 16px;"></div>
+                <div class="form-group">
+                    <MudTextField Class="form-control" T="string" Label="Password" @bind-Value="_loginModel.Password" InputType="InputType.Password" FullWidth="true"/>
+                    <ValidationMessage For="@(() => _loginModel.Password)"></ValidationMessage>
+                </div>
+                <div style="height: 16px;"></div>
+                <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Success" Class="ml-auto">Login</MudButton>
+            </EditForm>
+        </MudPaper>
+    </div>
+</Animate>
+
 
 @code {
 private LoginUserDto _loginModel = new LoginUserDto();

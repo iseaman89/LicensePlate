@@ -1,0 +1,15 @@
+﻿
+
+<MudNavMenu>
+    <MudNavLink Href="/" Match="NavLinkMatch.All">Home</MudNavLink>
+    <AuthorizeView>
+        <Authorized>
+            <MudNavLink Match="NavLinkMatch.Prefix">@context.User?.Identity?.Name</MudNavLink>
+            <MudNavLink Href="/users/logout" Match="NavLinkMatch.Prefix">Log out</MudNavLink>
+            <MudNavLink Href="/license-plates/" Match="NavLinkMatch.Prefix">License plates</MudNavLink>
+        </Authorized>
+        <NotAuthorized>
+            <MudNavLink Href="/users/login" Match="NavLinkMatch.Prefix">Login</MudNavLink>
+        </NotAuthorized>
+    </AuthorizeView>
+</MudNavMenu>

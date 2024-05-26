@@ -2,16 +2,29 @@
 
 <PageTitle>Index</PageTitle>
 
-<Animate Animation="new SlideUpAnimation()" DelayMilliseconds="1000" Duration="TimeSpan.FromSeconds(5000)">
-    <MudImage
-        ObjectPosition="ObjectPosition.Center"
+<div>
+    <image
+        class="center-image"
         Height="150"
         Width="300"
         Src="img/spie-logo.jpg"
-        Elevation="25"
-        Class="rounded-lg"
-        Style="display: block; margin: auto;"
-    />
-</Animate>
+         />
+</div>
+
+<style>
+    body, html {
+        height: 100%;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 13%;
+    }
+
+    .center-image {
+        max-width: 100%;
+        max-height: 100%;
+    }
+</style>
 
 
