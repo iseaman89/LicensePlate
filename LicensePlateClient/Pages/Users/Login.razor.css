@@ -1,0 +1,14 @@
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh; /* Half the viewport height to start from the center */
+    position: relative;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}

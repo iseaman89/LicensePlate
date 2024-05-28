@@ -1,15 +1,10 @@
 @page "/users/login"
+@using System.Diagnostics
 @using MudExtensions.Enums
 @inject IAuthenticationService _authService
 @inject NavigationManager _navManager
 
 
-@if (!string.IsNullOrEmpty(_message))
-{
-<div class="alert alert-danger">
-    <p>@_message</p>
-</div>
-}
 <Animate Animation="new SlideUpAnimation()" DelayMilliseconds="1000" DurationMilliseconds="3000">
     <MudContainer Class="margin-top: 10px">
         <MudImage
@@ -18,32 +13,29 @@
             Width="300"
             Src="img/spie-logo.jpg"
             Class="rounded-lg"
-            Style="display: block; margin: auto;"
+            Style="display: block; margin: auto; margin-top: 20px;"
         />
     </MudContainer>
 </Animate>
 <Animate Animation="new ZoomInAnimation()" DelayMilliseconds="1200" DurationMilliseconds="3000">
-    <div style="display: flex; justify-content: center; align-items: center">
-        <MudPaper Style="width: 300px;">
+    <div class="login-container">
+        <MudPaper Style="width: 300px; padding: 20px;" Elevation="4">
             <EditForm Model="_loginModel" OnValidSubmit="HandleLogin">
                 <DataAnnotationsValidator/>
                 <ValidationSummary/>
-                <div class="form-group">
-                    <MudTextField Class="form-control" T="string" Label="Username" @bind-Value="_loginModel.UserName" FullWidth="true"/>
-                    <ValidationMessage For="@(() => _loginModel.UserName)"></ValidationMessage>
-                </div>
-                <div style="height: 16px;"></div>
-                <div class="form-group">
-                    <MudTextField Class="form-control" T="string" Label="Password" @bind-Value="_loginModel.Password" InputType="InputType.Password" FullWidth="true"/>
-                    <ValidationMessage For="@(() => _loginModel.Password)"></ValidationMessage>
-                </div>
-                <div style="height: 16px;"></div>
-                <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Success" Class="ml-auto">Login</MudButton>
+                <MudTextField T="string" Label="Username" @bind-Value="_loginModel.UserName" Required="true" FullWidth="true" Margin="Margin.Dense" Variant="Variant.Filled"/>
+                <ValidationMessage For="@(() => _loginModel.UserName)"/>
+                <MudTextField T="string" Label="Password" @bind-Value="_loginModel.Password" InputType="InputType.Password" Required="true" FullWidth="true" Margin="Margin.Dense" Variant="Variant.Filled"/>
+                <ValidationMessage For="@(() => _loginModel.Password)"/>
+                @if (!string.IsNullOrEmpty(_message))
+                {
+                <MudAlert Severity="Severity.Error" Elevation="2">@_message</MudAlert>
+                }
+                <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Success" Class="mt-3" FullWidth="true">Login</MudButton>
             </EditForm>
         </MudPaper>
     </div>
 </Animate>
-
 
 @code {
 private LoginUserDto _loginModel = new LoginUserDto();
@@ -51,21 +43,22 @@ private string _message = String.Empty;
 
 private async Task HandleLogin()
 {
-    try
-    {
-        var response = await _authService.AuthenticateAsync(_loginModel);
-        if (response)
-        {
-            _navManager.NavigateTo("/");
-        }
-    }
-    catch (ApiException ex)
-    {
-        if (ex.StatusCode >= 200 && ex.StatusCode <= 299)
-        {
-            _navManager.NavigateTo("/");
-        }
-         _message = ex.Response;
-   }
+try
+{
+var response = await _authService.AuthenticateAsync(_loginModel);
+if (response)
+{
+_navManager.NavigateTo("/");
+}
+}
+catch (ApiException ex)
+{
+    
+if (ex.StatusCode >= 200 && ex.StatusCode <= 299)
+{
+_navManager.NavigateTo("/");
+}
+_message = Messages.LoginError;
+}
 }
 }
