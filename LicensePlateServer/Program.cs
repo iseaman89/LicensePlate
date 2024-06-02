@@ -1,7 +1,10 @@
 using System.Text;
+using LicensePlateDataShared.Models;
 using LicensePlateServer.Configurations;
 using LicensePlateServer.Data;
+using LicensePlateServer.Factories;
 using LicensePlateServer.Repositories;
+using LicensePlateServer.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -17,10 +20,17 @@ builder.Services.AddControllers();
 var connString = builder.Configuration.GetConnectionString("LicensePlateDbConnection");
 builder.Services.AddDbContext<LicensePlateDbContext>(options => options.UseNpgsql(connString));
 
+builder.Services.AddHostedService<CameraBackgroundService>();
+
 builder.Services.AddIdentityCore<ApiUser>()
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<LicensePlateDbContext>();
 
+//builder.Services.AddSingleton<LicensePlateRecognition>();
+builder.Services.AddTransient<Camera>();
+builder.Services.AddScoped<ICameraService, CameraService>();
+builder.Services.AddTransient<ICameraCaptureFactory, CameraCaptureFactory>();
+builder.Services.AddTransient<ICameraCapture, CameraCapture>();
 builder.Services.AddScoped<ILicensePlateRepository, LicensePlateRepository>();
 builder.Services.AddScoped<ICameraRepository, CameraRepository>();
 
