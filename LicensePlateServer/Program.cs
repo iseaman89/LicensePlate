@@ -26,7 +26,7 @@ builder.Services.AddIdentityCore<ApiUser>()
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<LicensePlateDbContext>();
 
-//builder.Services.AddSingleton<LicensePlateRecognition>();
+builder.Services.AddSingleton<LicensePlateRecognition>();
 builder.Services.AddTransient<Camera>();
 builder.Services.AddScoped<ICameraService, CameraService>();
 builder.Services.AddTransient<ICameraCaptureFactory, CameraCaptureFactory>();

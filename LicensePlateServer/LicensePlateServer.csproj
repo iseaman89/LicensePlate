@@ -44,6 +44,7 @@
 
     <ItemGroup>
       <Folder Include="Controllers\" />
+      <Folder Include="Images\Plates\" />
       <Folder Include="Tesseract\" />
       <Folder Include="TrainedModels\" />
       <Folder Include="YoloModels\" />

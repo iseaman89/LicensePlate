@@ -29,7 +29,7 @@
                 <ValidationMessage For="@(() => _loginModel.Password)"/>
                 @if (!string.IsNullOrEmpty(_message))
                 {
-                <MudAlert Severity="Severity.Error" Elevation="2">@_message</MudAlert>
+                    <MudAlert Severity="Severity.Error" Elevation="2">@_message</MudAlert>
                 }
                 <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Success" Class="mt-3" FullWidth="true">Login</MudButton>
             </EditForm>

@@ -20,4 +20,6 @@ public static class Paths
         "C:/Users/yepa/source/repos/TestCameraConsole/TestCameraConsole/yolov8Model/yolov8m.onnx";
     public const string YoloLicensePlatePathMac =
         "/Users/iseaman/RiderProjects/LicensePlate/LicensePlateServer/TrainedModels/models/license_plate_detector.onnx";
+
+    public const string ImagePath = "C:/Users/yepa/source/repos/LicensePlate/LicensePlateServer/Images/Plates/";
 }
