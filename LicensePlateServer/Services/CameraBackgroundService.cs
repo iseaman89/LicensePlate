@@ -24,8 +24,7 @@ public class CameraBackgroundService : BackgroundService
 
         using (var scope = _serviceProvider.CreateScope())
         {
-            var context = scope.ServiceProvider.GetRequiredService<LicensePlateDbContext>();
-            //var recognitionService = scope.ServiceProvider.GetRequiredService<LicensePlateRecognition>();
+            var recognitionService = scope.ServiceProvider.GetRequiredService<ILicensePlateRecognition>();
             var loggerFactory = scope.ServiceProvider.GetRequiredService<ILoggerFactory>();
             var cameraService = scope.ServiceProvider.GetRequiredService<ICameraService>();
             var factory = scope.ServiceProvider.GetRequiredService<ICameraCaptureFactory>();
@@ -34,8 +33,7 @@ public class CameraBackgroundService : BackgroundService
 
             foreach (var camera in cameras)
             {
-                var cameraLogger = loggerFactory.CreateLogger<CameraCapture>();
-                var cameraCapture = factory.Create(camera);
+                var cameraCapture = factory.Create(recognitionService, loggerFactory, camera);
                 _cameraCaptures.Add(cameraCapture);
                 _ = cameraCapture.StartCaptureAsync(stoppingToken);
             }

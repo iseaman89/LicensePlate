@@ -5,5 +5,5 @@ namespace LicensePlateServer.Factories;
 
 public interface ICameraCaptureFactory
 {
-    ICameraCapture Create(Camera camera);
+    ICameraCapture Create(ILicensePlateRecognition licensePlateRecognition, ILoggerFactory loggerFactory, Camera camera);
 }

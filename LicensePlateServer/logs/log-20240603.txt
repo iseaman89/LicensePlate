@@ -38,3 +38,46 @@
 2024-06-03 18:51:56.140 +02:00 [INF] Camera Test Camera 1 in 192.168.0.154 stopped capturing.
 2024-06-03 18:51:56.140 +02:00 [INF] Camera CameraTest in 192.168.0.159 stopped capturing.
 2024-06-03 18:51:56.144 +02:00 [INF] Camera Background Service is stopping.
+2024-06-03 19:43:58.430 +02:00 [INF] Camera Background Service is starting.
+2024-06-03 19:43:58.567 +02:00 [ERR] Hosting failed to start
+System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.DllNotFoundException: Failed to find library "libleptonica-1.82.0.dylib" for platform x64.
+   at InteropDotNet.LibraryLoader.LoadLibrary(String fileName, String platformName)
+   at InteropRuntimeImplementer.LeptonicaApiSignaturesInstance.LeptonicaApiSignaturesImplementation..ctor(LibraryLoader loader)
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.RuntimeType.CreateInstanceImpl(BindingFlags bindingAttr, Binder binder, Object[] args, CultureInfo culture)
+   at InteropDotNet.InteropRuntimeImplementer.CreateInstance[T]()
+   at Tesseract.Interop.LeptonicaApi.Initialize()
+   at Tesseract.Interop.TessApi.Initialize()
+   at Tesseract.Interop.TessApi.get_Native()
+   at Tesseract.TesseractEngine..ctor(String datapath, String language, EngineMode engineMode, IEnumerable`1 configFiles, IDictionary`2 initialOptions, Boolean setOnlyNonDebugVariables)
+   at Tesseract.TesseractEngine..ctor(String datapath, String language, EngineMode engineMode)
+   at LicensePlateServer.Services.LicensePlateRecognition.InitializeOcrEngine() in /Users/iseaman/RiderProjects/LicensePlate/LicensePlateServer/Services/LicensePlateRecognition.cs:line 31
+   at LicensePlateServer.Services.LicensePlateRecognition..ctor(LicensePlateDbContext context) in /Users/iseaman/RiderProjects/LicensePlate/LicensePlateServer/Services/LicensePlateRecognition.cs:line 24
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(ServiceIdentifier serviceIdentifier, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at LicensePlateServer.Services.CameraBackgroundService.ExecuteAsync(CancellationToken stoppingToken) in /Users/iseaman/RiderProjects/LicensePlate/LicensePlateServer/Services/CameraBackgroundService.cs:line 27
+   at Microsoft.Extensions.Hosting.Internal.Host.<StartAsync>b__15_1(IHostedService service, CancellationToken token)
+   at Microsoft.Extensions.Hosting.Internal.Host.ForeachService[T](IEnumerable`1 services, CancellationToken token, Boolean concurrent, Boolean abortOnFirstException, List`1 exceptions, Func`3 operation)
+2024-06-03 19:43:58.573 +02:00 [INF] Camera Background Service is stopping.
+2024-06-03 19:45:55.319 +02:00 [INF] Camera Background Service is starting.
+2024-06-03 20:36:31.123 +02:00 [INF] Now listening on: https://localhost:7271
+2024-06-03 20:36:31.125 +02:00 [INF] Now listening on: http://localhost:5118
+2024-06-03 20:36:31.125 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-06-03 20:36:31.125 +02:00 [INF] Hosting environment: Development
+2024-06-03 20:36:31.125 +02:00 [INF] Content root path: /Users/iseaman/RiderProjects/LicensePlate/LicensePlateServer

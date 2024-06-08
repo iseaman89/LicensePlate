@@ -7,13 +7,13 @@ namespace LicensePlateServer.Services;
 
 public class CameraCapture : ICameraCapture
 {
-    private readonly LicensePlateRecognition _recognitionService;
+    private readonly ILicensePlateRecognition _recognitionService;
     private readonly ILogger<CameraCapture> _logger;
     private readonly Camera _camera;
     private readonly int _checkIntervalSeconds;
     private bool _isRunning;
 
-    public CameraCapture(LicensePlateRecognition recognitionService, ILogger<CameraCapture> logger, Camera camera, int checkIntervalSeconds = 10)
+    public CameraCapture(ILicensePlateRecognition recognitionService, ILogger<CameraCapture> logger, Camera camera, int checkIntervalSeconds = 10)
     {
         _recognitionService = recognitionService;
         _logger = logger;

@@ -1,0 +1,6 @@
+2024-06-04 20:55:53.183 +02:00 [INF] Application is shutting down...
+2024-06-04 20:55:53.202 +02:00 [INF] Camera Background Service is stopping.
+2024-06-04 20:55:53.203 +02:00 [INF] Camera camera in 192.168.0.10 stopped capturing.
+2024-06-04 20:55:53.203 +02:00 [INF] Camera Test Camera 1 in 192.168.0.154 stopped capturing.
+2024-06-04 20:55:53.203 +02:00 [INF] Camera CameraTest in 192.168.0.159 stopped capturing.
+2024-06-04 20:55:53.206 +02:00 [INF] Camera Background Service is stopping.

@@ -6,18 +6,9 @@ namespace LicensePlateServer.Factories;
 
 public class CameraCaptureFactory : ICameraCaptureFactory
 {
-    private readonly LicensePlateRecognition _licensePlateRecognition;
-    private readonly ILoggerFactory _loggerFactory;
-
-    public CameraCaptureFactory(LicensePlateRecognition licensePlateRecognition, ILoggerFactory loggerFactory)
+    public ICameraCapture Create(ILicensePlateRecognition licensePlateRecognition, ILoggerFactory loggerFactory, Camera camera)
     {
-        _licensePlateRecognition = licensePlateRecognition;
-        _loggerFactory = loggerFactory;
-    }
-
-    public ICameraCapture Create(Camera camera)
-    {
-        var logger = _loggerFactory.CreateLogger<CameraCapture>();
-        return new CameraCapture( _licensePlateRecognition, logger, camera);
+        var logger = loggerFactory.CreateLogger<CameraCapture>();
+        return new CameraCapture(licensePlateRecognition, logger, camera);
     }
 }

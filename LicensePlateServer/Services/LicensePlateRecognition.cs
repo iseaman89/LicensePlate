@@ -11,7 +11,7 @@ using ImageFormat = System.Drawing.Imaging.ImageFormat;
 
 namespace LicensePlateServer.Services;
 
-public class LicensePlateRecognition
+public class LicensePlateRecognition : ILicensePlateRecognition
 {
     private readonly LicensePlateDbContext _context;
     private TesseractEngine _ocrEngine;
@@ -28,6 +28,7 @@ public class LicensePlateRecognition
     
     private TesseractEngine InitializeOcrEngine()
     {
+        return null;
         var ocrEngine = new TesseractEngine(Paths.DataPath, "eng", EngineMode.Default);
         ocrEngine.SetVariable("tessedit_char_whitelist", "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ");
         return ocrEngine;
@@ -35,6 +36,7 @@ public class LicensePlateRecognition
     
     private IPredictor InitializeYoloPredictor(string modelPath)
     {
+        return null;
         return YoloV8Predictor.Create(modelPath);
     }
     
@@ -69,15 +71,17 @@ public class LicensePlateRecognition
             .FirstOrDefault();
         
         if (existingRecord != null && (TimeOnly.FromDateTime(DateTime.Now) - existingRecord.Time).TotalMinutes < 5) return;
+
+        var plateWithoutSpaces = plate.Replace(" ", String.Empty);
         
-        image.Save(Paths.ImagePath + plate + ".jpeg", ImageFormat.Jpeg);
+        image.Save(Paths.ImagePath + plateWithoutSpaces + ".jpeg", ImageFormat.Jpeg);
         
         var record = new LicensePlate
         {
             Date = DateOnly.FromDateTime(DateTime.Now),
             Time = TimeOnly.FromDateTime(DateTime.Now),
             PlateNumber = plate,
-            Image = Paths.ImagePath + plate + ".jpeg"
+            Image = Paths.ImagePath + plateWithoutSpaces + ".jpeg"
         };
         _context.LicensePlates.Add(record);
         _context.SaveChanges();
