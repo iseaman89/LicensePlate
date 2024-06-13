@@ -12,6 +12,10 @@ public class CameraService : ICameraService
         _context = context;
     }
 
+    /// <summary>
+    /// Gets all cameras from the database.
+    /// </summary>
+    /// <returns>An enumerable collection of <see cref="Camera"/> objects.</returns>
     public IEnumerable<Camera> GetAllCameras()
     {
         return _context.Cameras.ToList();

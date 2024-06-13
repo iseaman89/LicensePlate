@@ -1,5 +1,4 @@
 using LicensePlateDataShared.Models;
-using LicensePlateServer.Data;
 using LicensePlateServer.Services;
 
 namespace LicensePlateServer.Factories;

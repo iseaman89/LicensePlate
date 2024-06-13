@@ -12,6 +12,11 @@ namespace LicensePlateServer.Statics;
 
 public static class ImageConverter
 {
+    /// <summary>
+    /// Converts an ImageSharp image to a System.Drawing.Bitmap.
+    /// </summary>
+    /// <param name="img">The ImageSharp image to convert.</param>
+    /// <returns>The converted System.Drawing.Bitmap.</returns>
     public static Bitmap ImageSharpToBitmap(this SixLabors.ImageSharp.Image img)
     {
         if (img == null) return new Bitmap(0, 0);
@@ -21,6 +26,12 @@ public static class ImageConverter
         return new Bitmap(stream);
     }
 
+    /// <summary>
+    /// Converts a System.Drawing.Bitmap to an ImageSharp image.
+    /// </summary>
+    /// <typeparam name="TPixel">The pixel format of the ImageSharp image.</typeparam>
+    /// <param name="bitmap">The System.Drawing.Bitmap to convert.</param>
+    /// <returns>The converted ImageSharp image.</returns>
     public static Image<TPixel> ToImageSharpImage<TPixel>(this System.Drawing.Bitmap bitmap) where TPixel : unmanaged, IPixel<TPixel>
     {
         using (var memoryStream = new MemoryStream())
@@ -33,6 +44,11 @@ public static class ImageConverter
         }
     }
     
+    /// <summary>
+    /// Converts an ImageSharp.RectangleF to an ImageSharp.Rectangle.
+    /// </summary>
+    /// <param name="rectF">The ImageSharp.RectangleF to convert.</param>
+    /// <returns>The converted ImageSharp.Rectangle.</returns>
     public static SixLabors.ImageSharp.Rectangle ConvertRectangleFToRectangleImageSharp(SixLabors.ImageSharp.RectangleF rectF)
     {
         // Truncate the floating-point values to integers (you could also use Math.Round, Math.Ceiling, etc.)
@@ -45,6 +61,11 @@ public static class ImageConverter
         return new SixLabors.ImageSharp.Rectangle(x, y, width, height);
     }
     
+    /// <summary>
+    /// Converts an ImageSharp.RectangleF to a System.Drawing.Rectangle.
+    /// </summary>
+    /// <param name="rectF">The ImageSharp.RectangleF to convert.</param>
+    /// <returns>The converted System.Drawing.Rectangle.</returns>
     public static System.Drawing.Rectangle ConvertRectangleFToRectangle(SixLabors.ImageSharp.RectangleF rectF)
     {
         // Truncate the floating-point values to integers (you could also use Math.Round, Math.Ceiling, etc.)
@@ -57,6 +78,11 @@ public static class ImageConverter
         return new System.Drawing.Rectangle(x, y, width, height);
     }
     
+    /// <summary>
+    /// Converts a System.Drawing.Bitmap to a Tesseract Pix object.
+    /// </summary>
+    /// <param name="bitmap">The System.Drawing.Bitmap to convert.</param>
+    /// <returns>The converted Tesseract Pix object.</returns>
     public static Pix ConvertBitmapToPix(Bitmap bitmap)
     {
         Pix pix = null;

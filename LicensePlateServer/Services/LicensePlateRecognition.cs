@@ -40,6 +40,10 @@ public class LicensePlateRecognition : ILicensePlateRecognition
         return YoloV8Predictor.Create(modelPath);
     }
     
+    /// <summary>
+    /// Processes a single frame for license plate recognition.
+    /// </summary>
+    /// <param name="frame">The frame to process.</param>
     public void ProcessFrame(Image frame)
     {
         var predictions = _predictorYolo.Predict(frame);

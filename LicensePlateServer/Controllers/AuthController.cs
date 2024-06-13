@@ -1,16 +1,11 @@
-using System;
-using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 using AutoMapper;
 using LicensePlateDataShared.Static;
 using LicensePlateServer.Data;
 using LicensePlateServer.Models.Users;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
@@ -35,6 +30,11 @@ namespace LicensePlateServer.Controllers
             _configuration = configuration;
         }
 
+        /// <summary>
+        /// Registers a new user.
+        /// </summary>
+        /// <param name="userDto">The user data transfer object.</param>
+        /// <returns>An <see cref="IActionResult"/> representing the result of the action.</returns>
         [HttpPost]
         [Route("register")]
         public async Task<IActionResult> Register(UserDto userDto)
@@ -65,6 +65,11 @@ namespace LicensePlateServer.Controllers
             }
         }
 
+        /// <summary>
+        /// Logs in an existing user.
+        /// </summary>
+        /// <param name="userDto">The login user data transfer object.</param>
+        /// <returns>An <see cref="ActionResult"/> containing the authentication response.</returns>
         [HttpPost]
         [Route("login")]
         public async Task<ActionResult<AuthResponse>> Login(LoginUserDto userDto)

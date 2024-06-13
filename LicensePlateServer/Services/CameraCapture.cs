@@ -21,6 +21,11 @@ public class CameraCapture : ICameraCapture
         _checkIntervalSeconds = checkIntervalSeconds;
     }
     
+    /// <summary>
+    /// Starts capturing images from the camera asynchronously.
+    /// </summary>
+    /// <param name="stoppingToken">Token to signal cancellation.</param>
+    /// <returns>A task that represents the asynchronous operation.</returns>
     public async Task StartCaptureAsync(CancellationToken stoppingToken)
     {
         using var httpClientHandler = new HttpClientHandler { Credentials = new NetworkCredential(_camera.Login, _camera.Password) };
@@ -48,6 +53,9 @@ public class CameraCapture : ICameraCapture
         _logger.LogInformation($"Camera {_camera.Name} in {_camera.IpAddress} started capturing.");
     }
     
+    /// <summary>
+    /// Stops capturing images from the camera.
+    /// </summary>
     public void StopCapture()
     {
         _isRunning = false;

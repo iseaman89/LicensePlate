@@ -1,15 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using LicensePlateDataShared.Models;
 using LicensePlateDataShared.Static;
-using LicensePlateServer.Data;
 using LicensePlateServer.Models.LicensePlates;
 using LicensePlateServer.Repositories;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -30,8 +24,11 @@ namespace LicensePlateServer.Controllers
             _mapper = mapper;
             _logger = logger;
         }
-
-        // GET: api/Authors
+        
+        /// <summary>
+        /// Gets all license plates.
+        /// </summary>
+        /// <returns>A list of license plates.</returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<LicensePlateReadOnlyDto>>> GetLicensePlates()
         {
@@ -47,8 +44,12 @@ namespace LicensePlateServer.Controllers
                 return StatusCode(500, Messages.Error500Message);
             }
         }
-
-        // GET: api/Authors/5
+        
+        /// <summary>
+        /// Gets a license plate by ID.
+        /// </summary>
+        /// <param name="id">The ID of the license plate.</param>
+        /// <returns>The license plate details.</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<LicensePlateReadOnlyDto>> GetLicensePlate(int id)
         {
@@ -71,9 +72,13 @@ namespace LicensePlateServer.Controllers
                 return StatusCode(500, Messages.Error500Message);
             }
         }
-
-        // PUT: api/Authors/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        
+        /// <summary>
+        /// Updates a license plate.
+        /// </summary>
+        /// <param name="id">The ID of the license plate.</param>
+        /// <param name="licensePlateDto">The license plate data transfer object.</param>
+        /// <returns>No content.</returns>
         [HttpPut("{id}")]
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> PutLicensePlate(int id, LicensePlateUpdateDto licensePlateDto)
@@ -113,9 +118,12 @@ namespace LicensePlateServer.Controllers
 
             return NoContent();
         }
-
-        // POST: api/Authors
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        
+        /// <summary>
+        /// Creates a new license plate.
+        /// </summary>
+        /// <param name="licensePlateDto">The license plate data transfer object.</param>
+        /// <returns>The created license plate.</returns>
         [HttpPost]
         [Authorize(Roles = "Administrator")]
         public async Task<ActionResult<LicensePlateCreateDto>> PostLicensePlate(LicensePlateCreateDto licensePlateDto)
@@ -134,8 +142,12 @@ namespace LicensePlateServer.Controllers
             }
             
         }
-
-        // DELETE: api/Authors/5
+        
+        /// <summary>
+        /// Deletes a license plate by ID.
+        /// </summary>
+        /// <param name="id">The ID of the license plate.</param>
+        /// <returns>No content.</returns>
         [HttpDelete("{id}")]
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> DeleteLicensePlate(int id)
@@ -160,6 +172,11 @@ namespace LicensePlateServer.Controllers
             }
         }
 
+        /// <summary>
+        /// Checks if a license plate exists by ID.
+        /// </summary>
+        /// <param name="id">The ID of the license plate.</param>
+        /// <returns>True if the license plate exists; otherwise, false.</returns>
         private async Task<bool> LicensePlateExists(int id)
         {
             return await _licensePlateRepository.Exists(id);

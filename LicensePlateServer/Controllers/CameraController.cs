@@ -1,14 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using LicensePlateDataShared.Models;
 using LicensePlateDataShared.Static;
-using LicensePlateServer.Data;
 using LicensePlateServer.Models.Cameras;
 using LicensePlateServer.Repositories;
 using Microsoft.AspNetCore.Authorization;
@@ -30,8 +24,11 @@ namespace LicensePlateServer.Controllers
             _mapper = mapper;
             _logger = logger;
         }
-
-        // GET: api/Authors
+        
+        /// <summary>
+        /// Gets all cameras.
+        /// </summary>
+        /// <returns>A list of cameras.</returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CameraReadOnlyDto>>> GetCameras()
         {
@@ -47,8 +44,12 @@ namespace LicensePlateServer.Controllers
                 return StatusCode(500, Messages.Error500Message);
             }
         }
-
-        // GET: api/Authors/5
+        
+        /// <summary>
+        /// Gets a camera by ID.
+        /// </summary>
+        /// <param name="id">The ID of the camera.</param>
+        /// <returns>The camera details.</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<CameraReadOnlyDto>> GetCamera(int id)
         {
@@ -71,9 +72,13 @@ namespace LicensePlateServer.Controllers
                 return StatusCode(500, Messages.Error500Message);
             }
         }
-
-        // PUT: api/Authors/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        
+        /// <summary>
+        /// Updates a camera.
+        /// </summary>
+        /// <param name="id">The ID of the camera.</param>
+        /// <param name="cameraDto">The camera data transfer object.</param>
+        /// <returns>No content.</returns>
         [HttpPut("{id}")]
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> PutCamera(int id, CameraUpdateDto cameraDto)
@@ -113,9 +118,12 @@ namespace LicensePlateServer.Controllers
 
             return NoContent();
         }
-
-        // POST: api/Authors
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        
+        /// <summary>
+        /// Creates a new camera.
+        /// </summary>
+        /// <param name="cameraDto">The camera data transfer object.</param>
+        /// <returns>The created camera.</returns>
         [HttpPost]
         [Authorize(Roles = "Administrator")]
         public async Task<ActionResult<CameraCreateDto>> PostCamera(CameraCreateDto cameraDto)
@@ -134,8 +142,12 @@ namespace LicensePlateServer.Controllers
             }
             
         }
-
-        // DELETE: api/Authors/5
+        
+        /// <summary>
+        /// Deletes a camera by ID.
+        /// </summary>
+        /// <param name="id">The ID of the camera.</param>
+        /// <returns>No content.</returns>
         [HttpDelete("{id}")]
         [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> DeleteCamera(int id)
@@ -160,6 +172,11 @@ namespace LicensePlateServer.Controllers
             }
         }
 
+        /// <summary>
+        /// Checks if a camera exists by ID.
+        /// </summary>
+        /// <param name="id">The ID of the camera.</param>
+        /// <returns>True if the camera exists; otherwise, false.</returns>
         private async Task<bool> CameraExists(int id)
         {
             return await _cameraRepository.Exists(id);
