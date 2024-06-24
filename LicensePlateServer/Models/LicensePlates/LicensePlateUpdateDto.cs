@@ -8,7 +8,10 @@ public class LicensePlateUpdateDto : BaseDto
     public DateOnly Date { get; set; }
     [Required]
     public TimeOnly Time { get; set; }
+    [Required] 
+    public string? CameraName { get; set; }
     [Required]
     public string? PlateNumber { get; set; }
+    [Required]
     public string? Image { get; set; }
 }

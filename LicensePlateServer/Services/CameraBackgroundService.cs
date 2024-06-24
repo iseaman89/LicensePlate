@@ -7,7 +7,7 @@ public class CameraBackgroundService : BackgroundService
 {
     private readonly ILogger<CameraBackgroundService> _logger;
     private readonly IServiceScopeFactory _serviceProvider;
-    private readonly List<ICameraCapture> _cameraCaptures = new List<ICameraCapture>();
+    private readonly List<ICameraMonitor> _cameraCaptures = new List<ICameraMonitor>();
 
     public CameraBackgroundService(ILogger<CameraBackgroundService> logger, IServiceScopeFactory serviceProvider)
     {
@@ -29,10 +29,10 @@ public class CameraBackgroundService : BackgroundService
 
         using (var scope = _serviceProvider.CreateScope())
         {
-            var recognitionService = scope.ServiceProvider.GetRequiredService<ILicensePlateRecognition>();
+            var recognitionService = scope.ServiceProvider.GetRequiredService<ILicensePlateService>();
             var loggerFactory = scope.ServiceProvider.GetRequiredService<ILoggerFactory>();
             var cameraService = scope.ServiceProvider.GetRequiredService<ICameraService>();
-            var factory = scope.ServiceProvider.GetRequiredService<ICameraCaptureFactory>();
+            var factory = scope.ServiceProvider.GetRequiredService<ICameraMonitorFactory>();
 
             var cameras = cameraService.GetAllCameras();
 
@@ -40,7 +40,7 @@ public class CameraBackgroundService : BackgroundService
             {
                 var cameraCapture = factory.Create(recognitionService, loggerFactory, camera);
                 _cameraCaptures.Add(cameraCapture);
-                _ = cameraCapture.StartCaptureAsync(stoppingToken);
+                _ = cameraCapture.StartMonitorCameraAsync(stoppingToken);
             }
         }
 
@@ -58,7 +58,7 @@ public class CameraBackgroundService : BackgroundService
 
         foreach (var cameraCapture in _cameraCaptures)
         {
-            cameraCapture.StopCapture();
+            cameraCapture.StopMonitorCamera();
         }
 
         return Task.CompletedTask;

@@ -26,18 +26,16 @@ builder.Services.AddIdentityCore<ApiUser>()
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<LicensePlateDbContext>();
 
-builder.Services.AddScoped < ILicensePlateRecognition, LicensePlateRecognition>();
+builder.Services.AddScoped<ILicensePlateService, LicensePlateService>();
 builder.Services.AddTransient<Camera>();
 builder.Services.AddScoped<ICameraService, CameraService>();
-builder.Services.AddTransient<ICameraCaptureFactory, CameraCaptureFactory>();
-builder.Services.AddTransient<ICameraCapture, CameraCapture>();
+builder.Services.AddTransient<ICameraMonitorFactory, CameraMonitorFactory>();
+builder.Services.AddTransient<ICameraMonitor, CameraMonitor>();
 builder.Services.AddScoped<ILicensePlateRepository, LicensePlateRepository>();
 builder.Services.AddScoped<ICameraRepository, CameraRepository>();
 
 builder.Services.AddAutoMapper(typeof(MapperConfig));
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

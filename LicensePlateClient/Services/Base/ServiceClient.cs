@@ -1205,6 +1205,10 @@ namespace LicensePlateClient.Services.Base
         [Newtonsoft.Json.JsonProperty("time", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public System.TimeSpan Time { get; set; }
+        
+        [Newtonsoft.Json.JsonProperty("cameraName", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public string CameraName { get; set; }
 
         [Newtonsoft.Json.JsonProperty("plateNumber", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
@@ -1227,6 +1231,9 @@ namespace LicensePlateClient.Services.Base
 
         [Newtonsoft.Json.JsonProperty("time", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.TimeSpan Time { get; set; }
+        
+        [Newtonsoft.Json.JsonProperty("cameraName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public string CameraName { get; set; }
 
         [Newtonsoft.Json.JsonProperty("plateNumber", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string PlateNumber { get; set; }
@@ -1250,6 +1257,10 @@ namespace LicensePlateClient.Services.Base
         [Newtonsoft.Json.JsonProperty("time", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
         public System.TimeSpan Time { get; set; }
+        
+        [Newtonsoft.Json.JsonProperty("cameraName", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        public string CameraName { get; set; }
 
         [Newtonsoft.Json.JsonProperty("plateNumber", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]

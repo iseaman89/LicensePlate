@@ -2,14 +2,17 @@
 
 <PageTitle>Index</PageTitle>
 
-<div>
-    <image
-        class="center-image"
+<MudContainer Class="center-image">
+    <MudImage
+        ObjectPosition="ObjectPosition.Center"
         Height="150"
         Width="300"
         Src="img/spie-logo.jpg"
-         />
-</div>
+        Class="rounded-lg"
+        Style="display: block; margin: auto; margin-top: 20px;"
+    />
+    <MudText Typo="Typo.h4" Class="description">License plates data table</MudText>
+</MudContainer>
 
 <style>
     body, html {
@@ -24,6 +27,10 @@
     .center-image {
         max-width: 100%;
         max-height: 100%;
+    }
+    
+    .description{
+        margin-top: 5%
     }
 </style>
 

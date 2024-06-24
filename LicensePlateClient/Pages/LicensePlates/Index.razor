@@ -1,82 +1,48 @@
 @page "/license-plates/"
 @inject ILicensePlateService _licensePlateService
 @inject IJSRuntime _js
+@inject AuthenticationStateProvider _authenticationStateProvider
 
-<h3>Index</h3>
-
-@if (_response.Success == false)
+@if (!_response.Success)
 {
-<div class="alert alert-danger">
-    <h4>@_response.Message</h4>
-</div>
-}
-@if (_licensePlates == null)
-{
-    <div class="alert alert-info">
-        <h4>Loading data...</h4>
-    </div>
+    <MudAlert Severity="Severity.Error" Elevation="2">
+    <MudText Typo="Typo.h4">@_response.Message</MudText>
+    </MudAlert>
 }
 else
 {
-    <AuthorizeView Roles=@Roles.Administartor>
-        <a class="btn btn-dark" href="/license-plates/create"><span class="oi oi-plus" aria-hidden="true"></span>Create</a>
-    </AuthorizeView>
-    <br/>
-    <table class="table table-responsive">
-        <thead>
-        <tr>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Plate Number</th>
-            <th>Image</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var licensePlate in _licensePlates)
-        {
-            <tr>
-                <td>@licensePlate.Date</td>
-                <td>@licensePlate.Time</td>
-                <td>@licensePlate.PlateNumber</td>
-                <td>@licensePlate.Image</td>
-                <td>
-                    <AuthorizeView Roles=@Roles.Administartor>
-                        <a class="btn btn-warning" href="/license-plates/update/@licensePlate.Id"><span class="oi oi-pencil" aria-hidden="true"></span>Edit</a>
-                        <button class="btn btn-danger" @onclick="() => Delete(licensePlate.Id)"><span class="oi oi-delete" aria-hidden="true"></span>Delete</button>
-                    </AuthorizeView>
-                </td>
-            </tr>
-        }
-        </tbody>
-    </table>
-}
-
-@code {
-    private List<LicensePlateReadOnlyDto> _licensePlates;
-    private Response<List<LicensePlateReadOnlyDto>> _response = new Response<List<LicensePlateReadOnlyDto>>(){Success = true};
-
-    protected override async Task OnInitializedAsync()
-    {
-        _response = await _licensePlateService.GetLicensePlates();
-
-        if (_response.Success)
-        {
-            _licensePlates = _response.Data;
-        }
-    }
-
-    private async Task Delete(int id)
-    {
-        var licensePlate = _licensePlates.Find(lp => lp.Id == id);
-        var confirm = await _js.InvokeAsync<bool>("confirm", $"Are you sure that you want delete license plate {licensePlate.PlateNumber}?");
-        if (confirm)
-        {
-            var response = await _licensePlateService.Delete(id);
-            if (response.Success)
-            {
-                await OnInitializedAsync();
-            }
-        }
-    }
-
+    <MudTable ServerData="@(new Func<TableState, Task<TableData<LicensePlateReadOnlyDto>>>(ServerReload))"
+              Dense="true" Hover="true" @ref="_table">
+        <ToolBarContent>
+            <MudText Typo="Typo.h6">License Plates</MudText>
+            <MudSpacer />
+            <MudTextField T="string" ValueChanged="@(s=>OnSearch(s))" Placeholder="Search" Adornment="Adornment.Start"
+                          AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+        </ToolBarContent>
+        <HeaderContent>
+            <MudTh><MudTableSortLabel SortLabel="name_field" T="LicensePlateReadOnlyDto">Camera</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortLabel="date_field" T="LicensePlateReadOnlyDto">Date</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortLabel="time_field" T="LicensePlateReadOnlyDto">Time</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortLabel="plate_field" T="LicensePlateReadOnlyDto">Plate number</MudTableSortLabel></MudTh>
+            <MudTh>Image</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Time">@context.CameraName</MudTd>
+            <MudTd DataLabel="Date">@context.Date.ToString("dd/MM/yyyy")</MudTd>
+            <MudTd DataLabel="Time">@context.Time</MudTd>
+            <MudTd DataLabel="Plate number">@context.PlateNumber</MudTd>
+            <MudTd>
+                <MudImage Src="@GetImagePath(context.Image)" Alt="License Plate Image" Width="100" Height="50"/>
+            </MudTd>
+        </RowTemplate>
+        <NoRecordsContent>
+            <MudText>No matching records found</MudText>
+        </NoRecordsContent>
+        <LoadingContent>
+            <MudText>Loading...</MudText>
+        </LoadingContent>
+        <PagerContent>
+            <MudTablePager />
+        </PagerContent>
+    </MudTable>
 }

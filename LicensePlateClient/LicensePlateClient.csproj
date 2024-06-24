@@ -31,17 +31,12 @@
     </ItemGroup>
 
     <ItemGroup>
-      <AdditionalFiles Include="Pages\LicensePlates\Create.razor" />
       <AdditionalFiles Include="Pages\LicensePlates\Index.razor" />
-      <AdditionalFiles Include="Pages\LicensePlates\Update.razor" />
       <AdditionalFiles Include="Pages\Users\Login.razor" />
       <AdditionalFiles Include="Pages\Users\Logout.razor" />
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Pages\LicensePlates\Create.cs">
-        <DependentUpon>Create.razor</DependentUpon>
-      </Compile>
       <Compile Update="Pages\LicensePlates\Index.cs">
         <DependentUpon>Index.razor</DependentUpon>
       </Compile>
@@ -53,6 +48,7 @@
       <Content Remove="wwwroot\img\" />
     </ItemGroup>
     <ItemGroup>
+      <None Include="wwwroot\Images\Plates\SL59JLM.jpg" />
       <None Include="wwwroot\img\spie-logo---weißer-hintergrund.jpg" />
       <None Include="wwwroot\img\spie-logo.jpg" />
     </ItemGroup>

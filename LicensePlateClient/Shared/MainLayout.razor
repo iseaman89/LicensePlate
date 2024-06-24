@@ -6,27 +6,24 @@
 
 <MudLayout>
     <MudAppBar Color="Color.Transparent">
-        <MudSpacer/>
         <MudButton Color="Color.Transparent" Href="/">
-            <MudIcon Icon="@Icons.Material.Filled.Home" ></MudIcon>
-            Home
+            <MudImage Href="/" Src="img/spie-logo.jpg" Width="100" Height="40"></MudImage>
         </MudButton>
+        <MudSpacer/>
         <AuthorizeView>
             <Authorized>
-                <MudIcon Icon="@Icons.Material.Filled.VerifiedUser"></MudIcon>
-                <MudText>@context.User?.Identity?.Name</MudText>
-                <MudButton Color="Color.Transparent" Href="/users/logout">
-                    <MudIcon Icon="@Icons.Material.Filled.Logout" ></MudIcon>
-                    Logout
-                </MudButton>
                 <MudButton Color="Color.Transparent" Href="/license-plates/">
-                    <MudIcon Icon="@Icons.Material.Filled.DirectionsCar" ></MudIcon>
+                    <MudIcon Icon="@Icons.Material.Filled.DirectionsCar"></MudIcon>
                     License plates
+                </MudButton>
+                <MudButton Color="Color.Transparent" Href="/users/logout">
+                    <MudIcon Icon="@Icons.Material.Filled.Logout"></MudIcon>
+                    Logout
                 </MudButton>
             </Authorized>
             <NotAuthorized>
                 <MudButton Color="Color.Transparent" Href="/users/login">
-                    <MudIcon Icon="@Icons.Material.Filled.Login" ></MudIcon>
+                    <MudIcon Icon="@Icons.Material.Filled.Login"></MudIcon>
                     Login
                 </MudButton>
             </NotAuthorized>

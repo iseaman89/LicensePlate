@@ -1,41 +1,60 @@
 @page "/users/login"
-@using System.Diagnostics
-@using MudExtensions.Enums
 @inject IAuthenticationService _authService
 @inject NavigationManager _navManager
 
-
-<Animate Animation="new SlideUpAnimation()" DelayMilliseconds="1000" DurationMilliseconds="3000">
-    <MudContainer Class="margin-top: 10px">
-        <MudImage
-            ObjectPosition="ObjectPosition.Center"
-            Height="150"
-            Width="300"
-            Src="img/spie-logo.jpg"
-            Class="rounded-lg"
-            Style="display: block; margin: auto; margin-top: 20px;"
-        />
-    </MudContainer>
-</Animate>
-<Animate Animation="new ZoomInAnimation()" DelayMilliseconds="1200" DurationMilliseconds="3000">
-    <div class="login-container">
-        <MudPaper Style="width: 300px; padding: 20px;" Elevation="4">
-            <EditForm Model="_loginModel" OnValidSubmit="HandleLogin">
-                <DataAnnotationsValidator/>
-                <ValidationSummary/>
-                <MudTextField T="string" Label="Username" @bind-Value="_loginModel.UserName" Required="true" FullWidth="true" Margin="Margin.Dense" Variant="Variant.Filled"/>
-                <ValidationMessage For="@(() => _loginModel.UserName)"/>
-                <MudTextField T="string" Label="Password" @bind-Value="_loginModel.Password" InputType="InputType.Password" Required="true" FullWidth="true" Margin="Margin.Dense" Variant="Variant.Filled"/>
-                <ValidationMessage For="@(() => _loginModel.Password)"/>
-                @if (!string.IsNullOrEmpty(_message))
-                {
+<MudContainer Class="center-container">
+    <Animate Animation="new SlideUpAnimation()" DelayMilliseconds="1000" DurationMilliseconds="3000">
+        <MudContainer Class="center-image">
+            <MudImage
+                ObjectPosition="ObjectPosition.Center"
+                Height="150"
+                Width="300"
+                Src="img/spie-logo.jpg"
+                Class="rounded-lg"
+                Style="margin-top: 20px;"/>
+            <MudText Typo="Typo.h4" Class="description">License plates data table</MudText>
+        </MudContainer>
+    </Animate>
+    <Animate Animation="new ZoomInAnimation()" DelayMilliseconds="1200" DurationMilliseconds="3000">
+        <MudContainer Class="center-content">
+            <MudPaper Style="width: 300px; padding: 20px;" Elevation="4">
+                <EditForm Model="_loginModel" OnValidSubmit="HandleLogin">
+                    <DataAnnotationsValidator/>
+                    <ValidationSummary/>
+                    <MudTextField T="string" Label="Username" @bind-Value="_loginModel.UserName" Required="true" FullWidth="true" Margin="Margin.Dense" Variant="Variant.Filled"/>
+                    <ValidationMessage For="@(() => _loginModel.UserName)"/>
+                    <MudTextField T="string" Label="Password" @bind-Value="_loginModel.Password" InputType="InputType.Password" Required="true" FullWidth="true" Margin="Margin.Dense" Variant="Variant.Filled"/>
+                    <ValidationMessage For="@(() => _loginModel.Password)"/>
+                    @if (!string.IsNullOrEmpty(_message))
+                    {
                     <MudAlert Severity="Severity.Error" Elevation="2">@_message</MudAlert>
-                }
-                <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Success" Class="mt-3" FullWidth="true">Login</MudButton>
-            </EditForm>
-        </MudPaper>
-    </div>
-</Animate>
+                    }
+                    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Success" Class="mt-3" FullWidth="true">Login</MudButton>
+                </EditForm>
+            </MudPaper>
+        </MudContainer>
+    </Animate>
+</MudContainer>
+
+<style>
+    body, html {
+        height: 100%;
+        margin: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 13%;
+    }
+
+    .center-image {
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+    .description{
+        margin-top: 5%
+    }
+</style>
 
 @code {
 private LoginUserDto _loginModel = new LoginUserDto();
